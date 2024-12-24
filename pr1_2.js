@@ -1,44 +1,37 @@
+
 let cart = [];
-constaddProduct = (productName, price, quantity) => {
-    cart.push({ productName, price, quantity });
-};
 
-constcalculateTotal = () =>
-    cart.reduce((total, product) => total + product.price * product.quantity, 0);
 
-constremoveProduct = (productName) => {
-    cart = cart.filter(product =>product.productName !== productName);
-};
+function addProduct(productName, price, quantity) {
+  cart.push({ productName, price, quantity });
+}
 
-constlogProductDetails = () => {
-    console.log("Product Details:");
-    cart.forEach(({ productName, price, quantity }) => {
-        console.log(`Product: ${productName}, Price: $${price}, Quantity: ${quantity}`);
-    });
-};
 
-constdisplayCartSummary = () => {
-    console.log("Cart Summary:");
-    cart.forEach(({ productName, price, quantity }) => {
-        console.log(`Product: ${productName}, Price: $${price.toFixed(2)}, Quantity: ${quantity}`);
-    });
-};
-addProduct("Laptop", 999.99, 1);
-addProduct("Smartphone", 699.99, 2);
-addProduct("Headphones", 199.99, 3);
+function calculateTotal() {
+  let total = 0;
+  for (let product of cart) {
+    total += product.price * product.quantity;
+  }
+  return total;
+}
 
-console.log("\nInitial Cart:");
-displayCartSummary();
+function removeProduct(productName) {
+  cart = cart.filter((product) => product.productName !== productName);
+}
 
-console.log("\nTotal Cost:");
-console.log(`$${calculateTotal().toFixed(2)}`);
 
-console.log("\nRemoving 'Smartphone' from the cart...");
-removeProduct("Smartphone");
+function logProductDetails() {
+  for (let product of cart) {
+    console.log(`Product: ${product.productName}, Price: $${product.price}, Quantity: ${product.quantity}`);
+  }
+}
 
-console.log("\nUpdated Cart:");
-displayCartSummary();
+addProduct("Laptop", 1000, 1);
+addProduct("Mouse", 50, 2);
+addProduct("Keyboard", 75, 1);
 
-console.log("\nProduct Details:");
+console.log("Cart Total: $" + calculateTotal());
+
+removeProduct("Mouse");
+
 logProductDetails();
-
