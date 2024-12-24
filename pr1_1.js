@@ -1,38 +1,37 @@
 
-
-
 let tasks = [];
 
-constaddTask = (title, status, priority) => {
-    tasks.push({ title, status, priority });
+const addTask = (title, status, priority) => {
+  tasks.push({ title: title, status: status, priority: priority });
 };
 
-constfilterByStatus = (status) =>tasks.filter(task =>task.status === status);
 
-constfindHighPriorityTask = () =>tasks.find(task =>task.priority === 5);
-
-constlistTaskTitlesWithStatus = () =>
-    tasks.map(task => `Task: ${task.title}, Status: ${task.status}`);
-
-constlogTaskDetails = () => {
-    console.log("Task Details:");
-    tasks.forEach(task => {
-        console.log(`Title: ${task.title}, Status: ${task.status}, Priority: ${task.priority}`);
-    });
+const filterByStatus = (status) => {
+  return tasks.filter((task) => task.status === status);
 };
-addTask("Finish project report", "Pending", 4);
-addTask("Clean the house", "Completed", 3);
-addTask("Prepare presentation", "Pending", 5);
-addTask("Pay bills", "Pending", 2);
 
-console.log("Tasks with 'Pending' status:");
-console.log(filterByStatus("Pending"));
 
-console.log("\nFirst High Priority Task (priority 5):");
-console.log(findHighPriorityTask());
+const findHighPriorityTask = () => {
+  return tasks.find((task) => task.priority === 5);
+};
 
-console.log("\nList of Task Titles with Status:");
-console.log(listTaskTitlesWithStatus());
+const getTaskTitlesWithStatus = () => {
+  return tasks.map((task) => `Task: ${task.title}, Status: ${task.status}`);
+};
 
-console.log("\nDetails of All Tasks:");
-logTaskDetails();
+
+const logAllTasks = () => {
+  tasks.forEach((task) => {
+    console.log(`Title: ${task.title}, Status: ${task.status}, Priority: ${task.priority}`);
+  });
+};
+
+addTask("Do laundry", "Pending", 3);
+addTask("Submit assignment", "Completed", 5);
+addTask("Grocery shopping", "Pending", 2);
+
+console.log("Filtered Tasks:", filterByStatus("Pending"));
+console.log("High Priority Task:", findHighPriorityTask());
+console.log("Task Titles with Status:", getTaskTitlesWithStatus());
+
+logAllTasks();
